@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+  {% block title %}
+    Registration
+  {% endblock%}
+
+  {%block header%}
+    Registration
+  {%endblock%}
+  {%block body%}
+    <form action= "{{ url_for('Signup') }}"  method="post">
+        <input type="text" name="fname" placeholder="First Name">
+        <input type="text" name="lname" placeholder="Last Name"><br>
+
+        <input type="email" name="email" placeholder="Email"><br>
+        <input type="password" name="password" placeholder="Password"<br>
+        <input type="radio" name="gender" value="male">Male
+        <input type="radio" name="gender" value="female">Female
+
+      {%if message %}
+        <p > * {{message}}</p>
+      {%endif%}
+      <div >
+        <button  name="button">Register</button>
+      </div>
+    </form>
+
+
+
+
+  {% endblock %}

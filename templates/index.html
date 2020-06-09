@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+  {% block title %}
+    Home
+  {% endblock%}
+  {%block header%}
+  {%endblock%}
+  {%block body%}
+    <div class="container">
+      <h2 class="header">Book Reviews</h2>
+      <p class="para">This website can find you 5000 books and their reviews on Good Reads</p>
+        <a class ="link_button"href="{{url_for('Signup')}}" >Signup</a><br>
+        <a class="link_button"href="{{url_for('login')}}" >Login</a>
+    </div>
+  {%endblock%}

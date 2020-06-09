@@ -1,0 +1,30 @@
+	{%extends "layout.html"%}
+{%block title%}
+welcome
+{%endblock%}
+{%block header%}
+  Search a book
+{%endblock%}
+{%block body%}
+<div>
+  <form class=""  action="{{url_for('search')}}" method="post">
+    <input type="text" name="search" placeholder="Search.." >
+  </form>
+</div>
+{%if loggedin%}
+<div class="">
+  {%if message%}
+  <p style="color:red;"> * {{message}}</p>
+  {%endif%}
+    {%if list.rowcount!=0%}
+      <ol>
+        {%for row in list%}
+        <li><a href="{{ url_for('searchbook', bookname=row[0])}}">{{row[0]}}</a></li>
+        {%endfor%}
+
+      </ol>
+
+    {%endif%}
+</div>
+{%endif%}
+{%endblock%}

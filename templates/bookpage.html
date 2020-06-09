@@ -1,0 +1,56 @@
+{%extends "layout.html"%}
+{%block title%}
+  bookpage
+{%endblock%}
+{%block header%}
+  {{booktitle}}
+{%endblock%}
+
+{%block body%}
+<div >
+  <ul>
+    {%for row in bookinfo.keys()%}
+      <li>{{row}} : {{bookinfo[row]}}</li>
+    {%endfor%}
+  </ul>
+</div>
+{%if json%}
+<div >
+  <h2 style="color:brown;">"{{booktitle}}" On GoodReads</h2>
+  <ul>
+    <li>Ratings count : {{json['books'][0]['ratings_count']}}</li>
+    <li>Average rating: {{json['books'][0]['average_rating']}}</li>
+
+  </ul>
+</div>
+{%endif%}
+{%if can_submit%}
+<div>
+  <p>Rate this book</p>
+  <form  action="{{url_for('searchbook',bookname=bookinfo['title'])}}" method="post">
+    {%for i in range(1,6)%}
+    <input type="radio" name="rate" value="{{i}}">{{i}}
+    {%endfor%}
+
+      <div class="">
+        <p>Review this book</p>
+          <textarea name="review" rows="8" cols="40" placeholder="what do you think of the book"></textarea>
+
+      </div>
+      <div >
+        <button class="btn btn-primary" name="button" type="submit">submit</button>
+      </div>
+  </form>
+</div>
+{%endif%}
+<h2>Reviews</h2>
+{%if reviews.rowcount==0%}
+  <p>This book has no reviews</p>
+{%else%}
+  {%for row in reviews%}
+  <p>{{row['review']}}</p>
+  {%endfor%}
+{%endif%}
+
+
+{%endblock%}
